@@ -1,0 +1,18 @@
+/* index.css */
+
+/* Appliquer une police générale à toute l'application */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Arial', sans-serif;
+  background-color: #e5e5e5;
+}
+
+h1 {
+  font-size: 2rem;
+  color: #333;
+}
