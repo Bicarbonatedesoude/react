@@ -8,9 +8,8 @@ const AnimalForm: React.FC = () => {
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     if (animal) {
-      // Ajouter le nouvel animal à la liste
       setAnimaux((prevAnimaux) => [...prevAnimaux, animal]); 
-      setAnimal(""); // Réinitialiser l'input
+      setAnimal(""); 
     }
   };
 

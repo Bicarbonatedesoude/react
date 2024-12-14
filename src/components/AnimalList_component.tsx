@@ -2,7 +2,7 @@ import React, { useContext } from "react";
 import { AnimalContext } from "../context/Animal_context";
 
 const AnimalList: React.FC = () => {
-  const { animaux } = useContext(AnimalContext) || { animaux: [] }; // Accéder aux animaux du contexte
+  const { animaux } = useContext(AnimalContext) || { animaux: [] };
 
   return (
     <div>

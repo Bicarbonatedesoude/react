@@ -6,11 +6,9 @@ import PageAnimal from "./components/AnimalList_component";
 import FormulaireAjout from "./components/AnimalForm_component";
 import { LangueProvider, useLangue } from "./context/Animal_langue";
 
-// Importer les traductions
 import translationsFr from "./lang/fr.json";
 import translationsEn from "./lang/en.json";
 
-// Définir le type des traductions
 interface Translations {
   [key: string]: { [key: string]: string };
 }
@@ -20,7 +18,6 @@ const translations: Translations = {
   en: translationsEn,
 };
 
-// Composant qui gère la barre d'application avec traduction
 const AppBarWithLang = () => {
   const { langue, changerLangue } = useLangue();
   const t = (key: string) => translations[langue]?.[key] || key;

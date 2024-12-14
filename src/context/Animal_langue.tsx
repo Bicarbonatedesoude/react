@@ -24,7 +24,7 @@ export const LangueProvider: React.FC<{ children: ReactNode }> = ({ children }) 
   );
 };
 
-// Hook personnalisé pour accéder au contexte
+// accéder au contexte
 export const useLangue = (): LangueContextType => {
   const context = useContext(LangueContext);
   if (!context) {
