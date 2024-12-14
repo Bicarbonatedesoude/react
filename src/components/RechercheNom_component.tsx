@@ -1,5 +1,5 @@
 import React, { useState, useContext } from "react";
-import { AnimalContext } from "../context/Animal.context";
+import { AnimalContext } from "../context/Animal_context";
 
 const RechercheNom: React.FC = () => {
   const [searchTerm, setSearchTerm] = useState<string>("");

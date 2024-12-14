@@ -1,5 +1,5 @@
 import React, { useState, useContext } from "react";
-import { AnimalContext } from "../context/Animal.context";
+import { AnimalContext } from "../context/Animal_context";
 
 const ModifierAnimal: React.FC = () => {
   const { animaux, setAnimaux } = useContext(AnimalContext) || { animaux: [], setAnimaux: () => {} };
@@ -10,7 +10,7 @@ const ModifierAnimal: React.FC = () => {
     const updatedAnimaux = animaux.map((animal) =>
       animal === animalToModify ? newAnimalName : animal
     );
-    setAnimaux(updatedAnimaux); // Met à jour la liste avec le nouveau nom
+    setAnimaux(updatedAnimaux); 
   };
 
   return (

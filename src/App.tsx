@@ -1,34 +1,63 @@
-import React, { useEffect, useState } from 'react';
-import axios from 'axios';
+import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { AppBar, Button, Toolbar, Typography } from "@mui/material";
+import { AnimalProvider } from "./context/Animal_context";
+import PagePrincipale from "./components/PagePrincipale_component";
+import PageAnimal from "./components/AnimalList_component";
+import FormulaireAjout from "./components/AnimalForm_component";
+import { LangueProvider, useLangue } from "./context/Animal_langue";
 
-// Définir le type des données que tu attends de l'API (si tu as un format précis)
-interface ApiData {
-  id: number;
-  name: string;
+// Importer les traductions
+import translationsFr from "./lang/fr.json";
+import translationsEn from "./lang/en.json";
+
+// Définir le type des traductions
+interface Translations {
+  [key: string]: { [key: string]: string };
 }
 
-const App: React.FC = () => {
-  const [data, setData] = useState<ApiData[]>([]);  // Initialisation du state avec un tableau vide
+const translations: Translations = {
+  fr: translationsFr,
+  en: translationsEn,
+};
 
-  // Utilisation de useEffect pour récupérer les données depuis l'API
-  useEffect(() => {
-    axios.get<ApiData[]>('http://localhost:5000/api/route')
-  .then((response) => {
-    setData(response.data);  // Mise à jour du state avec les données récupérées
-  })
-
-      .catch((error) => {
-        console.error('Erreur lors de la récupération des données :', error);
-      });
-  }, []);  // Le tableau vide [] fait en sorte que l'appel API se fasse uniquement au montage du composant
+// Composant qui gère la barre d'application avec traduction
+const AppBarWithLang = () => {
+  const { langue, changerLangue } = useLangue();
+  const t = (key: string) => translations[langue]?.[key] || key;
 
   return (
-    <div>
-      <h1>Données de l'API Backend :</h1>
-      <ul>
-      </ul>
-    </div>
+    <AppBar position="fixed">
+      <Toolbar>
+        <Typography variant="h6" sx={{ flexGrow: 1 }}>
+          {t("gestionAnimaux")}
+        </Typography>
+        <Button color="inherit" onClick={() => changerLangue("fr")}>
+          FR
+        </Button>
+        <Button color="inherit" onClick={() => changerLangue("en")}>
+          EN
+        </Button>
+        <Button color="inherit">{t("seDeconnecter")}</Button>
+      </Toolbar>
+    </AppBar>
   );
 };
+
+function App() {
+  return (
+    <LangueProvider>
+      <AnimalProvider>
+        <BrowserRouter>
+          <AppBarWithLang />
+          <Routes>
+            <Route path="/" element={<PagePrincipale />} />
+            <Route path="/animal/:id" element={<PageAnimal />} />
+            <Route path="/ajout" element={<FormulaireAjout />} />
+          </Routes>
+        </BrowserRouter>
+      </AnimalProvider>
+    </LangueProvider>
+  );
+}
 
 export default App;

@@ -1,7 +1,7 @@
 import React from "react";
-import AnimalForm from "./AnimalForm.component";
-import AnimalList from "./AnimalList.component";
-import ModifierAnimal from "./ModifierAnimal.component";
+import AnimalForm from "./AnimalForm_component";
+import AnimalList from "./AnimalList_component";
+import ModifierAnimal from "./ModifierAnimal_component";
 
 const PagePrincipale: React.FC = () => {
   return (

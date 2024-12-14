@@ -1,11 +1,13 @@
 import React from "react";
-import ReactDOM from "react-dom";
+import ReactDOM from "react-dom/client";
+import "./index.css";
 import App from "./App";
-import "./index.css"; // Styles globaux
+import { AnimalProvider } from "./context/Animal_context";
 
-ReactDOM.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>,
-  document.getElementById("root") // Point d'entrée de l'application
+ReactDOM.createRoot(document.getElementById("root")!).render(
+    <React.StrictMode>
+            <AnimalProvider>
+                <App />
+            </AnimalProvider>
+    </React.StrictMode>
 );
